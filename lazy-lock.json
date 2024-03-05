@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "fe72424e77cb9c953084bbcaaa0eb7fe8056dc70" },
   "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "d91daa5bf63c409f9e752e55082c3ba088b04c0b" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "88355559bb42cc8e4f6ca7b624dc4c3b654c5c08" },
   "aerial.nvim": { "branch": "master", "commit": "31fbd369bbbeb53080c4b1ead9e76be322725ef5" },
   "alpha-nvim": { "branch": "main", "commit": "41283fb402713fc8b327e60907f74e46166f4cfd" },
   "bufferline.nvim": { "branch": "main", "commit": "b15c6daf5a64426c69732b31a951f4e438cb6590" },
@@ -15,6 +15,7 @@
   "conform.nvim": { "branch": "master", "commit": "34b81e70da83e26c048290204de44268eb59814e" },
   "crates.nvim": { "branch": "main", "commit": "ec2b04a380c9f3a8e6ca38c230e4990d71978143" },
   "dressing.nvim": { "branch": "master", "commit": "6f212262061a2120e42da0d1e87326e8a41c0478" },
+  "elixir-tools.nvim": { "branch": "main", "commit": "4b559351d824122bb79a4553f48ea9dae0e3be7d" },
   "flash.nvim": { "branch": "main", "commit": "48817af25f51c0590653bbc290866e4890fe1cbe" },
   "friendly-snippets": { "branch": "main", "commit": "dcd4a586439a1c81357d5b9d26319ae218cc9479" },
   "git-blame.nvim": { "branch": "master", "commit": "a0282d05adbee80aaf4e2ff35b81b52940b67bed" },

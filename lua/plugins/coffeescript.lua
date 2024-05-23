@@ -1,3 +1,4 @@
-return {
-  "kchmck/vim-coffee-script",
-}
+return {}
+-- return {
+--   "kchmck/vim-coffee-script",
+-- }

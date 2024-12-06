@@ -1,4 +1,3 @@
--- return { "nvim-lualine/lualine.nvim", enabled = false }
 local Util = require("lazyvim.util")
 local branch = { "branch", icon = "" }
 
@@ -94,15 +93,15 @@ return {
 					sources = function()
 						local sources = require("dropbar.sources")
 						local utils = require("dropbar.utils.source")
-						--[[ local filename = {
-            get_symbols = function(buff, win, cursor)
-              local symbols = sources.path.get_symbols(buff, win, cursor)
-              return { symbols[#symbols] }
-            end,
-          } ]]
+						local filename = {
+							get_symbols = function(buff, win, cursor)
+								local symbols = sources.path.get_symbols(buff, win, cursor)
+								return { symbols[#symbols] }
+							end,
+						}
 
 						return {
-							-- filename,
+							filename,
 							{
 								get_symbols = function(buf, win, cursor)
 									if vim.api.nvim_get_current_win() ~= win then
@@ -177,29 +176,9 @@ return {
 
 		dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
 	},
-	-- {
-	-- 	"SmiteshP/nvim-navic",
-	-- 	lazy = true,
-	-- 	init = function()
-	-- 		vim.g.navic_silence = true
-	-- 		LazyVim.lsp.on_attach(function(client, buffer)
-	-- 			if client.supports_method("textDocument/documentSymbol") then
-	-- 				require("nvim-navic").attach(client, buffer)
-	-- 			end
-	-- 		end)
-	-- 	end,
-	-- 	opts = function()
-	-- 		return {
-	-- 			separator = " ",
-	-- 			highlight = true,
-	-- 			depth_limit = 5,
-	-- 			icons = LazyVim.config.icons.kinds,
-	-- 			lazy_update_context = true,
-	-- 		}
-	-- 	end,
-	-- },
 	{
 		"nvim-lualine/lualine.nvim",
+		dependencies = { "pnx/lualine-lsp-status" },
 		event = "VeryLazy",
 		init = function()
 			vim.g.lualine_laststatus = vim.o.laststatus
@@ -240,7 +219,7 @@ return {
 					lualine_z = {},
 				},
 				winbar = {
-					lualine_a = { "filename" },
+					lualine_a = {},
 					lualine_b = {},
 					lualine_c = {
 						{
@@ -258,18 +237,17 @@ return {
 							color = "nil",
 						},
 					},
-
 					lualine_x = { "filetype" },
 					lualune_y = {},
 					lualine_z = { treesitter },
 				},
-
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { branch },
-
 					lualine_c = {
 						Util.lualine.root_dir(),
+						"lsp-status",
+
 						{
 							"diagnostics",
 							symbols = {
@@ -283,24 +261,24 @@ return {
 						{ Util.lualine.pretty_path() },
 					},
 					lualine_x = {
-          -- stylua: ignore
-          {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
-          },
-          -- stylua: ignore
-          {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
-          },
-          -- stylua: ignore
-          {
-            function() return "  " .. require("dap").status() end,
-            cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = Util.ui.fg("Debug"),
-          },
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+              color = Util.ui.fg("Statement"),
+            },
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.mode.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+              color = Util.ui.fg("Constant"),
+            },
+            -- stylua: ignore
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+              color = Util.ui.fg("Debug"),
+            },
 						{
 							require("lazy.status").updates,
 							cond = require("lazy.status").has_updates,

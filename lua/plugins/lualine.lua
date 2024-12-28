@@ -62,15 +62,6 @@ return {
 			end
 
 			return {
-				general = {
-					-- Remove the 'OptionSet' event since it causes weird issues with modelines.
-					attach_events = { "BufWinEnter", "BufWritePost" },
-					update_events = {
-						-- Remove the 'WinEnter' event since I handle it manually for just
-						-- showing the full dropbar in the current window.
-						win = { "CursorMoved", "CursorMovedI", "WinResized" },
-					},
-				},
 				icons = {
 					ui = {
 						-- Tweak the spacing around the separator.
@@ -86,6 +77,13 @@ return {
 					},
 				},
 				bar = {
+					-- Remove the 'OptionSet' event since it causes weird issues with modelines.
+					attach_events = { "BufWinEnter", "BufWritePost" },
+					update_events = {
+						-- Remove the 'WinEnter' event since I handle it manually for just
+						-- showing the full dropbar in the current window.
+						win = { "CursorMoved", "CursorMovedI", "WinResized" },
+					},
 					pick = {
 						-- Use the same labels as flash.
 						pivots = "asdfghjklqwertyuiopzxcvbnm",
@@ -232,7 +230,7 @@ return {
 							},
 						},
 						{
-							"%{%v:lua.dropbar.get_dropbar_str()%}",
+							"%{%v:lua.dropbar()%}",
 							separator = { left = "", right = "" },
 							color = "nil",
 						},
@@ -265,24 +263,32 @@ return {
             {
               function() return require("noice").api.status.command.get() end,
               cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-              color = Util.ui.fg("Statement"),
+              color = function ()
+                 return { fg = Snacks.util.color("Statement") }
+              end
             },
             -- stylua: ignore
             {
               function() return require("noice").api.status.mode.get() end,
               cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-              color = Util.ui.fg("Constant"),
+              color = function ()
+                 return { fg = Snacks.util.color("Constant") }
+              end
             },
             -- stylua: ignore
             {
               function() return "  " .. require("dap").status() end,
               cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-              color = Util.ui.fg("Debug"),
+              color = function ()
+                 return { fg = Snacks.util.color("Debug") }
+              end
             },
 						{
 							require("lazy.status").updates,
 							cond = require("lazy.status").has_updates,
-							color = Util.ui.fg("Special"),
+							color = function()
+								return { fg = Snacks.util.color("Special") }
+							end,
 						},
 						{
 							"diff",

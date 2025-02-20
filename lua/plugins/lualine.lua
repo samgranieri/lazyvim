@@ -194,8 +194,8 @@ return {
 			lualine_require.require = require
 
 			local icons = require("lazyvim.config").icons
-			local dropbar = require("dropbar")
-			vim.ui.select = require("dropbar.utils.menu").select
+			-- local dropbar = require("dropbar")
+			-- vim.ui.select = require("dropbar.utils.menu").select
 
 			vim.o.laststatus = vim.g.lualine_laststatus
 

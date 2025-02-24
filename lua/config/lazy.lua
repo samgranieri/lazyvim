@@ -32,7 +32,7 @@ require("lazy").setup({
 	},
 	install = { colorscheme = { "tokyonight", "habamax" } },
 	checker = {
-		enabled = true, -- check for plugin updates periodically
+		enabled = false, -- check for plugin updates periodically
 	}, -- automatically check for plugin updates
 	ui = {
 		title = "💤 lazy.nvim ",

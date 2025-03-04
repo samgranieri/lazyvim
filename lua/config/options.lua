@@ -4,3 +4,4 @@
 --
 local opt = vim.opt
 opt.relativenumber = false
+vim.g.loaded_perl_provider = 0
